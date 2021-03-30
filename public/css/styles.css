@@ -1,0 +1,25 @@
+/* footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+} */
+.msg{
+    background-color: #D4EDDA;
+    color: green;
+    border: 1px solid black;
+    width: 100%;
+    text-align: center;
+    padding: 10;
+}
+.cadastro{
+    background: #cadaca;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow:  -4px 7px 17px 1px #1c421c;
+}
+.edicao{
+    background: #e3c6a3;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow:  -4px 7px 17px 1px #ae977b;
+}
