@@ -1,5 +1,33 @@
 @extends('layouts.main')
+@section('scriptmascara')
+{{-- <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script> --}}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+<script type="text/javascript">
 
+    $(document).ready(()=>{
+        $("#cpf").mask("000.000.00-00")
+        $("#telefone").mask("(00)00000-0000")
+        $("#cep").mask("00.000-000")
+
+        $('#doct').on('change',(e)=>{
+            $('#documento').prop('id',e.target.value);
+        })
+        $('#doct').on('change',(e)=>{
+            $('#CPF').prop('id',e.target.value);
+        })
+
+        $("#doct").change(function(){
+            var e = $(this).find('option:selected').attr('value')//Exemplo
+            if(e == 'CNPJ'){
+                $("#CNPJ").unmask().mask("00.000.000/0000-00")
+            }else{
+                $("#CPF").unmask().mask("000.000.00-00")
+            }
+        });
+    })
+</script>
+@endsection
 @section('title', 'Cadastro de Cliente')
 @section('content')
     <div class="container">
@@ -7,6 +35,13 @@
         <body class="bg-light">
 
             <div class="container">
+                @if ($errors->any())
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li> {{ $error }} </li>
+                    @endforeach
+                </ul>
+                @endif
                 <div class="row py-5">
                     <div class="col-md-4 order-md-2 mb-4">
 
@@ -41,7 +76,7 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label for="documento_tipo">Tipo de documento</label>
-                                            <select name="documento_tipo" class="custom-select" required="">
+                                            <select name="documento_tipo" class="custom-select" required="" id="doct">
                                                 <option value="">Selecione...</option>
                                                 <option value="CPF"{{$cliente->tipodoc=="CPF"?"selected='selected'" : ""}}>CPF</option>
                                                 <option value="CNPJ">CNPJ</option>
@@ -76,7 +111,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="enderaco">Endereço</label>
-                                <input name="endereco" type="text" class="form-control" id="enderaco"
+                                <input name="endereco" type="text" class="form-control" id="endereco"
                                     placeholder="" required="" value="{{$cliente->endereco}}">
                                 <div class="invalid-feedback">
                                     Este campo deve ser preenchido.
@@ -84,7 +119,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="address">Bairro</label>
-                                <input name="bairro" type="text" class="form-control" id="address"
+                                <input name="bairro" type="text" class="form-control" id="bairro"
                                     placeholder="Exemplo 'Posse'" required="" value="{{$cliente->bairro}}">
                                 <div class="invalid-feedback">
                                     Este campo deve ser preenchido.
@@ -92,7 +127,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="municipio">Município</label>
-                                <input name="municipio" type="text" class="form-control" id="address"
+                                <input name="municipio" type="text" class="form-control" id="bairro"
                                     placeholder="Exemplo 'Nova Iguaçu'" required="" value="{{$cliente->municipio}}">
                                 <div class="invalid-feedback">
                                     Este campo deve ser preenchido.
@@ -136,8 +171,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="zip">Cep</label>
-                                    <input name="cep" type="text" class="form-control" id="zip" placeholder="" required="" value="{{$cliente->cep}}">
+                                    <label for="cep">Cep</label>
+                                    <input name="cep" type="text" class="form-control" id="cep" placeholder="" required="" value="{{$cliente->cep}} id="cep">
                                     <div class="invalid-feedback">
                                         Este campo deve ser preenchido.
                                     </div>
@@ -155,7 +190,7 @@
             <!-- Bootstrap core JavaScript
                                 ================================================== -->
             <!-- Placed at the end of the document so the pages load faster -->
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
                 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
             </script>
             <script>
@@ -164,7 +199,7 @@
             </script>
             <script src="../../assets/js/vendor/popper.min.js"></script>
             <script src="../../dist/js/bootstrap.min.js"></script>
-            <script src="../../assets/js/vendor/holder.min.js"></script>
+            <script src="../../assets/js/vendor/holder.min.js"></script> --}}
             <script>
                 // Example starter JavaScript for disabling form submissions if there are invalid fields
                 (function() {

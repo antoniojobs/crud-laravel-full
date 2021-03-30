@@ -17,6 +17,15 @@ class ClienteController extends Controller
     }
     public function store(ClienteRequest $request)
     {
+        // dd($request->all());
+        $val = $request->telefone;
+        // dd((str_replace(["(",")","-","."],'',$request->all())));
+       ((str_replace(["(",")","-","."],'',$request->all())));
+        $request = (str_replace(["(",")","-","."],'',$request->all()));
+        // dd($request);
+        // echo'<pre>';
+    // print_r($request->all());
+    echo'</pre>';
         if ($request) {
             $cliente = new Cliente;
             $cliente->nome = $request['nome'];
@@ -57,7 +66,7 @@ class ClienteController extends Controller
     public function edita(ClienteRequest $request)
     {
             Cliente::findOrFail($id);
-            return view('clientes/show');
+            return view('clientes.show');
     }
 
 

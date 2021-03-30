@@ -4,8 +4,8 @@
 @section('content')
 <h1>Aqui você lista todos os clientes</h1>
 
-    <div class="p-0 col-lg-12">
-        <table class="table table-dark table-striped">
+<div class="p-0 col-lg-12">
+    <table class="table table-dark table-striped">
         <thead style="color: royalblue">
             <tr>
                 <th scope="col">Nome</th>
@@ -20,7 +20,7 @@
                 <th scope="col">ALTERAR</th>
             </tr>
         </thead>
-    <tbody>
+        <tbody>
 
             @foreach ($clientes as $cliente )
             <tr>
@@ -34,11 +34,11 @@
                 <td> {{$cliente->cep}} </td>
                 <td> {{$cliente->telefone}} </td>
                 <td> <a id="{{$cliente->id}}" href="/deletar/{{$cliente->id}}"><i class="fas fa-trash-alt"></i>Excluir</a> |
-                     <a href="/cliente/edita/{{$cliente->id}}"><i class="fas fa-edit"></i>Editar</a> </td>
-            </tr>
-            @endforeach
-        </tbody>
+                    <a href="/cliente/edita/{{$cliente->id}}"><i class="fas fa-edit"></i>Editar</a> </td>
+                </tr>
+                @endforeach
+            </tbody>
         </table>
-      </div>
-@endsection
+    </div>
+    @endsection
 

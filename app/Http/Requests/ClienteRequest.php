@@ -26,10 +26,10 @@ class ClienteRequest extends FormRequest
 
         return [
             'nome'=>'required | min:3 | max:255',
-            'telefone'=>'required | min:10 |max:11',
-            'documento_tipo'=>'required | min:11 | max:14',
+            'telefone'=>'required | min:10 |max:14',
+            'documento_tipo'=>'required | min:3 | max:14',
             'documento'=>'required',
-            'sexo'=>'required | min:2 | max:2',
+            'sexo'=>'required | min:1',
             'endereco'=>'required',
             'bairro'=>'required',
             'estado'=>'required',
